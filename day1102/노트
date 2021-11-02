@@ -1,0 +1,75 @@
+<오늘의 실습>
+1.UDP방식으로 어제 팀문제해결하기
+2.TCP방식으로 여러 명과 메아리 & 방송
+-----------
+3.Gui
+
+
+
+
+네트워크 통신의 방식은 크게 2가지
+1)TCP방식
+	=>연결을 상대방 컴과 연결을 맺은후, 그 연결된 회선을 통해서 데이터를 주고 받음
+
+
+
+**
+
+
+2)UDP방식
+	=>상대방 컴과 연결을 먼저 맺지 않고, 데이터를 막 보내는 방식
+	=>데이터를 보낼 때마다 데이터를 보내는 그 시점에 보내고자 하는 데이터뿐만 아니라 목적지주소와 데이터를 하나의 세트로 만들기
+				: 그것을 패킷이라고 지징함 
+	=>DatagramSocket클래스의 send메소드와 recieve메소드를 이용함 (receive (DatagramSocket p))
+		 이때 send와 recieve는 DatagramSocket 메개변수로 전달해야함, 
+		 데이터를 보낼 때에도 패킷에 담아서 보내야하고, 받을 때도 패킷에 담아서 와야함
+		 
+		 
+--------
+<화면 구성>
+1. Character usr Interface
+	프로그램사용을 문자로 하는 방식
+	컴퓨터에게 일을 시킬 때 문자로 시키는 방식
+	
+
+2. GUI Graphic user Interface
+	프로그램 사용을 그래픽 화면을 통해서 사용하는 방식
+	컴퓨터에게 일을 시킬 때에 그래픽화면의 버튼을 누르거나 하여 시키는 방식
+	
+	제공하는 패키지
+	1) java.awt  -> java 초기 버전부터 제공하여 운영체제마다 모양이 서로 다름	
+	2) javax.swing -> java 1.4이후에 발표되어, 모든 플렛폼에서 동일한 모양을 보여줌
+	
+3. GUI프로래밍의 순서
+	1)시작은 창을 만들기: JFrame 클래스
+	2)그 창안 표현하고자 하는 화면을 구성함
+	3)JFrame의 상속계층: 
+	
+	java.lang.Object
+		java.awt.Component
+			java.awt.Container
+				java.awt.Window
+					java.awt.Frame
+						javax.swing.JFrame	
+	모든 화면을 구성하는 요소들은 
+	JButton, JTextField, JTextAtrea는 Jcomponent의 후손
+	
+	
+	
+	**//창을 닫을 때에 프로그램도 같이 종료함
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 
+4.배치관리자(LayoutManager)
+	-컴퍼넌트들을 화면에 배치하기 위한 클래스들을 말함
+	
+	1)FlowLayout : 물 흐릇이 컴포넌트들을 위->아래, 왼->오른쪽 자동배치하는 방식
+	2)GridLayout : 화면을 마치 엑셀 화면처럼(행과 열)로 분할하여 컴포넌트들을 배치하는 방식
+	3)BorderLayout : 화면을  위 아래 좌우 가운데 5개의 영역으로 분할하여 배치하는 방식	
+		가운데는 절대 생략하면 x
+		가운데를 중심으로 덜 중요한 구성요소들을 위 아래 좌 우에 배치함
+
+ **복잡한 화면을 구성할 때엔 프레임 하나만으로 화면을 구성하기가 어려움
+ 이럴때 서브컨테이너 역할을 하는 것 : 패널
+--> 패널의 기본 레이아웃방식이 FLowLayout, 프레임의 기본 레이아웃 방식이 BorderLayout
+-->BorderLayout에서 컴포넌트를 담을 때 위치를 지정하지 않으면 기본값은 Center
+
